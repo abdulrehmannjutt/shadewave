@@ -6,7 +6,8 @@ const Hero = () => {
       {/* Hero Image Container - 60vh on mobile, natural height on desktop */}
       <div className="relative sm:h-auto h-[60vh]">
         <img
-          src="/images/hero.webp"
+          src="/images/Ray-Ban-model-couple1.jpg"
+          // src="/images/hero.webp"
           alt="People wearing stylish glasses"
           className="w-full h-full sm:h-auto object-cover"
         />

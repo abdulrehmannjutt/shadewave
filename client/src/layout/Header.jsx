@@ -18,7 +18,7 @@ function Header() {
   const userStatus = localStorage.getItem("userData");
   const parsedUserStatus = userStatus ? JSON.parse(userStatus) : null;
   const headerTextClasses =
-    "font-medium text-[15px] border-b-2 border-transparent transition-all duration-300 ease-in-out uppercase";
+    "font-medium text-[18px] border-b-2 border-transparent transition-all duration-300 ease-in-out uppercase";
   const activeClasses =
     "text-mainColor hover:border-b-2 hover:border-mainColor";
   const notActiveClasses = "text-white hover:border-b-2 hover:border-white";
@@ -44,17 +44,17 @@ function Header() {
 
   return (
     <>
-      <header className="sticky top-0 right-0 bottom-0 z-10 py-1 md:py-6 px-2 md:px-5 bg-blackCustomBg">
+      <header className="sticky top-0 right-0 bottom-0 z-10 py-4 md:py-6 px-2 md:px-5 bg-blackCustomBg">
         <nav className="w-full z-20">
           <div className="max-w-screen-2xl flex 950:flex-row 950:gap-0 gap-[10px] items-center justify-between mx-auto ">
             <Link to="/" className="text-white">
               <div className="flex justify-center items-center gap-1">
                 <img
                   src="/images/shadewave.png"
-                  // className="sm:h-[50px] h-[40px] sm:w-[70px] w-[40px]"
+                  className="sm:h-[60px] h-[40px] sm:w-[100px] w-[70px]"
                   alt="Logo"
-                  height={60}
-                  width={100}
+                  // height={60}
+                  // width={100}
                 />
               </div>
             </Link>
