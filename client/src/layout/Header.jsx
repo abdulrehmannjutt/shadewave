@@ -108,7 +108,10 @@ function Header() {
               <div className="950:flex hidden items-center justify-center gap-2">
                 {
                   userStatus && (
-                    <button onClick={handleLogout} className={`header-btn ${headerTextClasses} text-white`}>
+                    <button
+                      onClick={handleLogout}
+                      className={`${headerTextClasses} text-white hover:text-mainColor border-b-2 hover:border-mainColor`}
+                    >
                       LOGOUT
                     </button>
                   )
@@ -189,7 +192,6 @@ function Header() {
                       strokeWidth={2}
                       d="M4 6h16M4 12h16M4 18h16"
                     />
-                    )
                   </svg>
                 </button>
               </div>
@@ -211,7 +213,7 @@ function Header() {
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="p-4 flex flex-row-reverse items-center border-b">
+        <div className="p-4 flex flex-row-reverse items-center">
           <button onClick={() => setIsOpen(false)} className="p-2   rounded-lg">
             <svg
               className="w-6 h-6"
@@ -230,10 +232,10 @@ function Header() {
         </div>
 
         <div className="flex flex-col justify-between p-4">
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-5">
             <Link
               to="/"
-              className={`p-2    rounded-lg mb-2 ${
+              className={`p-2    rounded-lg  ${
                 isActive("/") ? "text-mainColor" : ""
               }`}
             >
@@ -241,7 +243,7 @@ function Header() {
             </Link>
             <Link
               to="/products"
-              className={`p-2    rounded-lg mb-2 ${
+              className={`p-2    rounded-lg  ${
                 isActive("/products") ? "text-mainColor" : ""
               }`}
             >
@@ -249,7 +251,7 @@ function Header() {
             </Link>
             <Link
               to="/contact"
-              className={`p-2    rounded-lg mb-2 ${
+              className={`p-2    rounded-lg ${
                 isActive("/contact") ? "text-mainColor" : ""
               }`}
             >
@@ -257,7 +259,7 @@ function Header() {
             </Link>
             <Link
               to="/about"
-              className={`p-2    rounded-lg mb-2 ${
+              className={`p-2    rounded-lg ${
                 isActive("/about") ? "text-mainColor" : ""
               }`}
             >
@@ -265,8 +267,9 @@ function Header() {
             </Link>
             <Link
               to="/favourites"
-              className="p-2 hover:bg-gray-100 rounded-full transition duration-300 ease-in-out cursor-pointer"
+              className="p-2 rounded-full transition duration-300 ease-in-out cursor-pointer flex items-center gap-2"
             >
+              <span>Favourites</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -278,32 +281,60 @@ function Header() {
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
               </svg>
             </Link>
+            {
+              userStatus && (
+                <button
+                  onClick={handleLogout}
+                  className="w-full p-2    rounded-lg text-left"
+                >
+                  Logout
+                </button>
+              )
+              //  : (
+              //   <>
+              //     <Link to="/login" className="block p-2   rounded-lg mb-2">
+              //       Login
+              //     </Link>
+              //     <Link to="/signup" className="block p-2   rounded-lg">
+              //       Sign Up
+              //     </Link>
+              //   </>
+              // )
+            }
+            {admin && (
+              <Link to="/admin" className="block p-2 rounded-lg">
+                Admin
+              </Link>
+            )}
           </div>
 
-          <div className="border-t mt-4 pt-4">
-            {userStatus ? (
-              <button
-                onClick={handleLogout}
-                className="w-full p-2    rounded-lg text-left"
-              >
-                Logout
-              </button>
-            ) : (
-              <>
-                <Link to="/login" className="block p-2   rounded-lg mb-2">
-                  Login
-                </Link>
-                <Link to="/signup" className="block p-2   rounded-lg">
-                  Sign Up
-                </Link>
-              </>
-            )}
+          {/* <div className="">
+            {
+              userStatus && (
+                <button
+                  onClick={handleLogout}
+                  className="w-full p-2    rounded-lg text-left"
+                >
+                  Logout
+                </button>
+              )
+              //  : (
+              //   <>
+              //     <Link to="/login" className="block p-2   rounded-lg mb-2">
+              //       Login
+              //     </Link>
+              //     <Link to="/signup" className="block p-2   rounded-lg">
+              //       Sign Up
+              //     </Link>
+              //   </>
+              // )
+            }
             {admin && (
               <Link to="/admin" className="block p-2   rounded-lg mt-2">
                 Admin
               </Link>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </>
