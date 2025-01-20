@@ -16,8 +16,8 @@ export default {
         maroon: "#6E260E",
         saddle: "#8B4513",
         blueish: "#0173bc",
-        // mainColor: '#00205B',
         mainColor: "#007BC4",
+        columbiaBlue: "#B9D9EB",
         russet: {
           DEFAULT: "#80461B",
           50: "rgba(128, 70, 27, 0.3)",

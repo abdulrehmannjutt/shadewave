@@ -3,54 +3,52 @@
 @tailwind utilities;
 
 :root {
-    --blue: #00205B;
+  --blue: #00205b;
 }
 
 .logo {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 body {
-    background-color: #f5f5f5;
-    /* font-family: cinzel; */
-    /* font-family: font-cinzel; */
-    font-family: 'Lato', sans-serif;
+  background-color: #f5f5f5;
+  /* font-family: 'Lato', sans-serif; */
+  font-family: "Oswald";
 }
 
 .custom-toast {
-    background-color: #007bc4;
-    color: white;
-    border-radius: 8px;
-    padding: 16px;
-    font-size: 17px;
+  background-color: #007bc4;
+  color: white;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 17px;
 }
 
 .Toastify__close-button {
-    color: white;
+  color: white;
 }
-
 
 /* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 4px;
-    /* Width of the scrollbar */
+  width: 4px;
+  /* Width of the scrollbar */
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-    background: #f0f0f0;
-    /* Background of the scrollbar track */
+  background: #f0f0f0;
+  /* Background of the scrollbar track */
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: var(--blue);
-    /* Color of the scrollbar thumb */
-    border-radius: 4px;
-    /* Rounded corners for the thumb */
+  background-color: var(--blue);
+  /* Color of the scrollbar thumb */
+  border-radius: 4px;
+  /* Rounded corners for the thumb */
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #b0b0b0;
-    /* Color when hovering over the thumb */
+  background: #b0b0b0;
+  /* Color when hovering over the thumb */
 }
 
 /* Thin scrollbar on all screens */
@@ -67,22 +65,21 @@ body {
     background-color: transparent;
 } */
 
-.header-btn{
-    @apply text-blackCustom hover:text-mainColor font-semibold text-[14px];
+.header-btn {
+  @apply text-blackCustom hover:text-mainColor font-semibold text-[14px];
 }
 
 /* footer */
 
 @media (max-width: 768px) {
-    .footer-div-1 {
-        flex-direction: column;
-    }
+  .footer-div-1 {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 540px) {
-
-    /* Tailwind's default mobile breakpoint */
-    .h-36px {
-        height: 36px;
-    }
+  /* Tailwind's default mobile breakpoint */
+  .h-36px {
+    height: 36px;
+  }
 }

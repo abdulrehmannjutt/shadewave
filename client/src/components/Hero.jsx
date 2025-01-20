@@ -1,74 +1,70 @@
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
-function Slider() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const slides = [
-    { id: 1, img: "/images/slider2.png" },
-    { id: 2, img: "/images/slider1.png" },
-    { id: 3, img: "/images/slider3.png" },
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [slides.length]);
-
+const Hero = () => {
   return (
-    <div className="mt-20 w-[90%] h-5/6 relative mx-auto overflow-hidden rounded-lg transition-shadow ">
-      <div className="flex justify-center items-center transition-all duration-500 bg-white">
+    <div className="relative w-full">
+      {/* Hero Image Container - 60vh on mobile, natural height on desktop */}
+      <div className="relative sm:h-auto h-[60vh]">
         <img
-          src={slides[currentIndex].img}
-          alt={`Slide ${currentIndex + 1}`}
-          className="object-center object-fill rounded-lg"
+          src="/images/hero.webp"
+          alt="People wearing stylish glasses"
+          className="w-full h-full sm:h-auto object-cover"
         />
-      </div>
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/70" />
 
-      {/* Navigation Buttons */}
-      <button
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 text-[40px] bg-opacity-50 text-blackCustom p-2 rounded-full hover:bg-opacity-70 transition"
-        onClick={() =>
-          setCurrentIndex(
-            currentIndex === 0 ? slides.length - 1 : currentIndex - 1
-          )
-        }
-      >
-        ‹
-      </button>
-      <button
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-opacity-50 text-blackCustom text-[40px] p-2 rounded-full hover:bg-opacity-70 transition"
-        onClick={() => setCurrentIndex((currentIndex + 1) % slides.length)}
-      >
-        ›
-      </button>
+        {/* Content - Positioned absolute within image container */}
+        <div className="absolute bottom-0 right-0 text-white px-4 sm:px-6 lg:px-8 pb-6 sm:pb-12">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-3 sm:space-y-4"
+            >
+              {/* Hero Text */}
+              <motion.h1
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold max-w-4xl"
+              >
+                See the World in Style
+              </motion.h1>
 
-      {/* Dots */}
-      <div className="absolute bottom-2 w-full flex justify-center space-x-2">
-        {slides.map((_, index) => (
-          <span
-            key={index}
-            className={`h-2 w-2 rounded-full cursor-pointer ${
-              index === currentIndex ? "bg-mainColor" : "bg-blackCustom"
-            }`}
-            onClick={() => setCurrentIndex(index)}
-          ></span>
-        ))}
+              <motion.p
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="text-base sm:text-xl max-w-2xl"
+              >
+                Discover our collection of premium eyewear that combines fashion
+                with function
+              </motion.p>
+
+              {/* Shop Button */}
+              <motion.button
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.3, delay: 0.7 }}
+                className="bg-white text-black 
+                           px-5 sm:px-8 
+                           py-2 sm:py-3 
+                           text-sm sm:text-lg 
+                           rounded-full font-semibold 
+                           hover:bg-opacity-90 transition-colors duration-300
+                           mt-3 sm:mt-6"
+              >
+                Shop Now
+              </motion.button>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </div>
   );
-}
-
-// Main Hero Component
-function Hero() {
-  return (
-    <div>
-     
-      <div className="flex h-[80vh] items-center justify-center space-x-4 px-4 bg-white">
-        <Slider />
-      </div>
-    </div>
-  );
-}
+};
 
 export default Hero;

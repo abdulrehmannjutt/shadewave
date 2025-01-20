@@ -28,10 +28,10 @@ const Home = () => {
   return (
     <section className="min-h-screen">
       {/* hero section */}
-      {/* <Hero/> */}
+      <Hero/>
 
       {/* categories */}
-      {/* <Categories/> */}
+      <Categories/>
 
       {/* top products */}
       {/* <TopProducts/> */}

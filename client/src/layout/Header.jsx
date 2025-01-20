@@ -17,6 +17,11 @@ function Header() {
 
   const userStatus = localStorage.getItem("userData");
   const parsedUserStatus = userStatus ? JSON.parse(userStatus) : null;
+  const headerTextClasses =
+    "font-medium text-[15px] border-b-2 border-transparent transition-all duration-300 ease-in-out uppercase";
+  const activeClasses =
+    "text-mainColor hover:border-b-2 hover:border-mainColor";
+  const notActiveClasses = "text-white hover:border-b-2 hover:border-white";
 
   useEffect(() => {
     if (parsedUserStatus?.isAdmin) {
@@ -39,14 +44,14 @@ function Header() {
 
   return (
     <>
-      <header className="sticky top-0 right-0 bottom-0 z-10 py-1 md:py-6 px-2 md:px-5 bg-white border-b">
+      <header className="sticky top-0 right-0 bottom-0 z-10 py-1 md:py-6 px-2 md:px-5 bg-blackCustomBg">
         <nav className="w-full z-20">
-          <div className="max-w-screen-2xl flex 950:flex-row 950:gap-0 gap-[10px] items-center justify-between mx-auto py-[5px]">
-            <Link to="/" className="text-blackCustom">
+          <div className="max-w-screen-2xl flex 950:flex-row 950:gap-0 gap-[10px] items-center justify-between mx-auto ">
+            <Link to="/" className="text-white">
               <div className="flex justify-center items-center gap-1">
                 <img
-                  src="/images/shadewave.jpeg"
-                  // className="sm:h-[44px] h-[40px] sm:w-[50px] w-[40px]"
+                  src="/images/shadewave.png"
+                  // className="sm:h-[50px] h-[40px] sm:w-[70px] w-[40px]"
                   alt="Logo"
                   height={60}
                   width={100}
@@ -56,68 +61,79 @@ function Header() {
 
             {/* Desktop Navigation Links */}
             <div
-              className={`950:flex hidden justify-center md:items-center space-y-2 md:space-y-0 text-center mb-2 md:mb-0`}
+              className={`950:flex hidden justify-center md:items-center space-y-2 md:space-y-0 text-center mb-2 md:mb-0 gap-[32px] py-2`}
             >
               <Link
                 to="/"
-                className={`text-blackCustom font-semibold text-[14px] px-3 py-2 hover:text-mainColor ${
-                  isActive("/") ? "text-mainColor" : ""
+                className={`${headerTextClasses} ${
+                  isActive("/") ? `${activeClasses}` : `${notActiveClasses}`
                 }`}
               >
                 Home
               </Link>
-              <Link
-                to="/products"
-                className={`text-blackCustom font-semibold text-[14px] px-3 py-2 hover:text-mainColor ${
-                  isActive("/products")
-                    ? "bg-white rounded-[4px] text-mainColor"
-                    : ""
-                }`}
-              >
-                Products
-              </Link>
+
               <Link
                 to="/contact"
-                className={`text-blackCustom font-semibold text-[14px] px-3 py-2 hover:text-mainColor ${
+                className={`${headerTextClasses} ${
                   isActive("/contact")
-                    ? "bg-white rounded-[4px] text-mainColor"
-                    : ""
+                    ? `${activeClasses}`
+                    : `${notActiveClasses}`
                 }`}
               >
                 Contact Us
               </Link>
               <Link
                 to="/about"
-                className={`text-blackCustom font-semibold text-[14px] px-3 py-2 hover:text-mainColor ${
+                className={`${headerTextClasses} ${
                   isActive("/about")
-                    ? "bg-white rounded-[4px] text-mainColor"
-                    : ""
+                    ? `${activeClasses}`
+                    : `${notActiveClasses}`
                 }`}
               >
                 About Us
               </Link>
+              <Link
+                to="/products"
+                className={`${headerTextClasses} ${
+                  isActive("/products")
+                    ? `${activeClasses}`
+                    : `${notActiveClasses}`
+                }`}
+              >
+                SUNGLASSES
+              </Link>
             </div>
 
             <div className="flex items-center gap-5">
-              <div className="950:flex hidden items-center justify-center">
-                {userStatus ? (
-                  <button onClick={handleLogout} className="header-btn">
-                    LOGOUT
-                  </button>
-                ) : (
-                  <div className="flex justify-center items-center gap-[3px]">
-                    <Link to="/login" className="header-btn">
-                      LOGIN
-                    </Link>
-                    <span className="text-[14px]">/</span>
-                    <Link to="/signup" className="header-btn">
-                      SIGN UP
-                    </Link>
-                  </div>
-                )}
+              <div className="950:flex hidden items-center justify-center gap-2">
+                {
+                  userStatus && (
+                    <button onClick={handleLogout} className={`header-btn ${headerTextClasses} text-white`}>
+                      LOGOUT
+                    </button>
+                  )
+                  // : (
+                  //   <div className="flex justify-center items-center gap-[3px]">
+                  //     <Link to="/login" className="header-btn">
+                  //       LOGIN
+                  //     </Link>
+                  //     <span className="text-[15px]">/</span>
+                  //     <Link to="/signup" className="header-btn">
+                  //       SIGN UP
+                  //     </Link>
+                  //   </div>
+                  // )
+                }
                 {admin ? (
-                  <Link to="/admin" className="header-btn ml-[3px]">
-                    / ADMIN
+                  <Link
+                    to="/admin"
+                    className={`${headerTextClasses} ${
+                      isActive("/admin")
+                        ? `${activeClasses}`
+                        : `${notActiveClasses}`
+                    }`}
+                  >
+                    Admin
                   </Link>
                 ) : null}
               </div>
@@ -144,7 +160,8 @@ function Header() {
               {/* Cart and Mobile Menu Button */}
               <div className="relative flex gap-2">
                 <button onClick={() => dispatch(togglePopUpCart())}>
-                  <i className="fa-solid fa-cart-shopping"></i>
+                  {/* <i className="fa-solid fa-cart-shopping"></i> */}
+                  <img src="images/shopping-cart.webp" width={28} height={28} />
                   {cartItems.length > 0 && (
                     <span className="absolute bottom-[15px] 950:right-[-7px] right-[25px] bg-mainColor text-white text-xs font-bold rounded-full px-1">
                       {cartItems.reduce(
@@ -161,18 +178,18 @@ function Header() {
                   className="950:hidden text-gray-700 focus:outline-none cursor-pointer"
                 >
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="#00205B"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
                     className="w-6 h-6"
+                    fill="#f0f0f0"
+                    stroke="#f0f0f0"
+                    viewBox="0 0 24 24"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6h16M4 12h16m-7 6h7"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
                     />
+                    )
                   </svg>
                 </button>
               </div>
@@ -195,10 +212,7 @@ function Header() {
         }`}
       >
         <div className="p-4 flex flex-row-reverse items-center border-b">
-          <button
-            onClick={() => setIsOpen(false)}
-            className="p-2 hover:text-mainColor rounded-lg"
-          >
+          <button onClick={() => setIsOpen(false)} className="p-2   rounded-lg">
             <svg
               className="w-6 h-6"
               fill="none"
@@ -219,7 +233,7 @@ function Header() {
           <div className="flex flex-col">
             <Link
               to="/"
-              className={`p-2 hover:text-mainColor  rounded-lg mb-2 ${
+              className={`p-2    rounded-lg mb-2 ${
                 isActive("/") ? "text-mainColor" : ""
               }`}
             >
@@ -227,7 +241,7 @@ function Header() {
             </Link>
             <Link
               to="/products"
-              className={`p-2 hover:text-mainColor  rounded-lg mb-2 ${
+              className={`p-2    rounded-lg mb-2 ${
                 isActive("/products") ? "text-mainColor" : ""
               }`}
             >
@@ -235,7 +249,7 @@ function Header() {
             </Link>
             <Link
               to="/contact"
-              className={`p-2 hover:text-mainColor  rounded-lg mb-2 ${
+              className={`p-2    rounded-lg mb-2 ${
                 isActive("/contact") ? "text-mainColor" : ""
               }`}
             >
@@ -243,7 +257,7 @@ function Header() {
             </Link>
             <Link
               to="/about"
-              className={`p-2 hover:text-mainColor  rounded-lg mb-2 ${
+              className={`p-2    rounded-lg mb-2 ${
                 isActive("/about") ? "text-mainColor" : ""
               }`}
             >
@@ -270,31 +284,22 @@ function Header() {
             {userStatus ? (
               <button
                 onClick={handleLogout}
-                className="w-full p-2 hover:text-mainColor  rounded-lg text-left"
+                className="w-full p-2    rounded-lg text-left"
               >
                 Logout
               </button>
             ) : (
               <>
-                <Link
-                  to="/login"
-                  className="block p-2 hover:text-mainColor rounded-lg mb-2"
-                >
+                <Link to="/login" className="block p-2   rounded-lg mb-2">
                   Login
                 </Link>
-                <Link
-                  to="/signup"
-                  className="block p-2 hover:text-mainColor rounded-lg"
-                >
+                <Link to="/signup" className="block p-2   rounded-lg">
                   Sign Up
                 </Link>
               </>
             )}
             {admin && (
-              <Link
-                to="/admin"
-                className="block p-2 hover:text-mainColor rounded-lg mt-2"
-              >
+              <Link to="/admin" className="block p-2   rounded-lg mt-2">
                 Admin
               </Link>
             )}
