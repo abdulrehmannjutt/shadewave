@@ -138,11 +138,6 @@ function Footer() {
             </p>
           </div>
         </div>
-
-        {/* Footer Bottom */}
-        {/* <div className="border-t border-white pt-4 950:hidden flex justify-center items-center text-sm">
-          Copyright ©{new Date().getFullYear()} Shade Wave. All Rights Reserved.
-        </div> */}
       </div>
     </footer>
   );

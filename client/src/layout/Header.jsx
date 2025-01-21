@@ -6,6 +6,8 @@ import { togglePopUpCart } from "../redux/cart/cartSlice";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [sunglassesDropdown, setSunglassesDropdown] = useState(false);
+  const [eyeglassesDropdown, setEyeglassesDropdown] = useState(false);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,19 +44,31 @@ function Header() {
     setIsOpen(false);
   }, [location]);
 
+  const SubcategoryMenu = ({ items, type }) => (
+    <div className="absolute top-full left-0 bg-white shadow-lg rounded-md py-2 w-40">
+      {items.map((item, index) => (
+        <Link
+          key={index}
+          to={`/products/${type}/${item.toLowerCase()}`}
+          className="block px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-mainColor transition-colors duration-200"
+        >
+          {item}
+        </Link>
+      ))}
+    </div>
+  );
+
   return (
     <>
       <header className="sticky top-0 right-0 bottom-0 z-10 py-4 md:py-6 px-2 md:px-5 bg-blackCustomBg">
         <nav className="w-full z-20">
-          <div className="max-w-screen-2xl flex md:flex-row md:gap-0 gap-[10px] items-center justify-between mx-auto ">
+          <div className="max-w-screen-2xl flex md:flex-row md:gap-0 gap-[10px] items-center justify-between mx-auto">
             <Link to="/" className="text-white">
               <div className="flex justify-center items-center gap-1">
                 <img
                   src="/images/shadewave.png"
                   className="sm:h-[60px] h-[40px] sm:w-[100px] w-[70px]"
                   alt="Logo"
-                  // height={60}
-                  // width={100}
                 />
               </div>
             </Link>
@@ -63,69 +77,72 @@ function Header() {
             <div
               className={`md:flex hidden justify-center md:items-center space-y-2 md:space-y-0 text-center mb-2 md:mb-0 gap-[32px] py-2`}
             >
-              <Link
-                to="/products"
-                className={`${headerTextClasses} ${
-                  isActive("/products")
-                    ? `${activeClasses}`
-                    : `${notActiveClasses}`
-                }`}
+              <div
+                className="relative group"
+                onMouseEnter={() => setSunglassesDropdown(true)}
+                onMouseLeave={() => setSunglassesDropdown(false)}
               >
-                Sunglasses
-              </Link>
+                <button
+                  className={`${headerTextClasses} ${
+                    isActive("/products") ? activeClasses : notActiveClasses
+                  }`}
+                >
+                  Sunglasses
+                </button>
+                {sunglassesDropdown && (
+                  <SubcategoryMenu
+                    items={["Male", "Female", "Kids"]}
+                    type="sunglasses"
+                  />
+                )}
+              </div>
+
+              <div
+                className="relative group"
+                onMouseEnter={() => setEyeglassesDropdown(true)}
+                onMouseLeave={() => setEyeglassesDropdown(false)}
+              >
+                <button
+                  className={`${headerTextClasses} ${
+                    isActive("/products") ? activeClasses : notActiveClasses
+                  }`}
+                >
+                  Eyeglasses
+                </button>
+                {eyeglassesDropdown && (
+                  <SubcategoryMenu
+                    items={["Male", "Female", "Kids"]}
+                    type="eyeglasses"
+                  />
+                )}
+              </div>
 
               <Link
                 to="/products"
                 className={`${headerTextClasses} ${
-                  isActive("/products")
-                    ? `${activeClasses}`
-                    : `${notActiveClasses}`
-                }`}
-              >
-                Eyeglasses
-              </Link>
-              <Link
-                to="/products"
-                className={`${headerTextClasses} ${
-                  isActive("/products")
-                    ? `${activeClasses}`
-                    : `${notActiveClasses}`
+                  isActive("/products") ? activeClasses : notActiveClasses
                 }`}
               >
                 Prescription
               </Link>
             </div>
 
+            {/* Rest of the header remains the same */}
             <div className="flex items-center gap-5">
               <div className="md:flex hidden items-center justify-center gap-2">
-                {
-                  userStatus && (
-                    <button
-                      onClick={handleLogout}
-                      className={`${headerTextClasses} text-white hover:text-mainColor border-b-2 hover:border-mainColor`}
-                    >
-                      LOGOUT
-                    </button>
-                  )
-                  // : (
-                  //   <div className="flex justify-center items-center gap-[3px]">
-                  //     <Link to="/login" className="header-btn">
-                  //       LOGIN
-                  //     </Link>
-                  //     <span className="text-[15px]">/</span>
-                  //     <Link to="/signup" className="header-btn">
-                  //       SIGN UP
-                  //     </Link>
-                  //   </div>
-                  // )
-                }
+                {userStatus && (
+                  <button
+                    onClick={handleLogout}
+                    className={`${headerTextClasses} text-white hover:text-mainColor border-b-2 hover:border-mainColor`}
+                  >
+                    LOGOUT
+                  </button>
+                )}
                 {admin ? (
                   <Link
                     to="/admin"
                     className={`${headerTextClasses} ${
-                      isActive("/admin")
-                        ? `${activeClasses}`
-                        : `${notActiveClasses}`
+                      isActive("/admin") ? activeClasses : notActiveClasses
                     }`}
                   >
                     Admin
@@ -133,7 +150,6 @@ function Header() {
                 ) : null}
               </div>
 
-              {/* heart */}
               <div className="md:flex hidden cursor-pointer">
                 <Link
                   to="/favourites"
@@ -142,21 +158,24 @@ function Header() {
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    fill={"red"}
+                    fill="red"
                     width="18"
                     height="18"
-                    stroke={"none"}
+                    stroke="none"
                   >
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                   </svg>
                 </Link>
               </div>
 
-              {/* Cart and Mobile Menu Button */}
               <div className="relative flex gap-2">
                 <button onClick={() => dispatch(togglePopUpCart())}>
-                  {/* <i className="fa-solid fa-cart-shopping"></i> */}
-                  <img src="images/shopping-cart.webp" width={28} height={28} />
+                  <img
+                    src="images/shopping-cart.webp"
+                    width={28}
+                    height={28}
+                    alt="Shopping Cart"
+                  />
                   {cartItems.length > 0 && (
                     <span className="absolute bottom-[15px] md:right-[-7px] right-[25px] bg-mainColor text-white text-xs font-bold rounded-full px-1">
                       {cartItems.reduce(
@@ -167,7 +186,6 @@ function Header() {
                   )}
                 </button>
 
-                {/* Mobile Menu Button */}
                 <button
                   onClick={() => setIsOpen(!isOpen)}
                   className="md:hidden text-gray-700 focus:outline-none cursor-pointer"
@@ -206,7 +224,7 @@ function Header() {
         }`}
       >
         <div className="p-4 flex flex-row-reverse items-center">
-          <button onClick={() => setIsOpen(false)} className="p-2   rounded-lg">
+          <button onClick={() => setIsOpen(false)} className="p-2 rounded-lg">
             <svg
               className="w-6 h-6"
               fill="none"
@@ -225,30 +243,107 @@ function Header() {
 
         <div className="flex flex-col justify-between p-4">
           <div className="flex flex-col gap-5">
+            {/* Mobile Sunglasses Dropdown */}
+            <div>
+              <div className="flex justify-center items-center">
+                <Link
+                  to="/products"
+                  className={`w-full text-left p-2 rounded-lg flex justify-between items-center ${
+                    isActive("/products") ? "text-mainColor" : ""
+                  }`}
+                >
+                  Sunglasses
+                </Link>
+                <svg
+                  onClick={() => {
+                    setSunglassesDropdown(!sunglassesDropdown);
+                    setEyeglassesDropdown(false);
+                  }}
+                  className={`w-4 h-4 transform transition-transform duration-300 ${
+                    sunglassesDropdown ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </div>
+              {sunglassesDropdown && (
+                <div className="ml-4 mt-2 flex flex-col gap-2 transform transition-transform duration-300 ease-in-out">
+                  {["Male", "Female", "Kids"].map((item) => (
+                    <Link
+                      key={item}
+                      to={`/products/sunglasses/${item.toLowerCase()}`}
+                      className="p-2 hover:text-mainColor"
+                    >
+                      {item}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Eyeglasses Dropdown */}
+            <div>
+              <div className="flex justify-center items-center">
+                <Link
+                  to="/products"
+                  className={`w-full text-left p-2 rounded-lg flex justify-between items-center ${
+                    isActive("/products") ? "text-mainColor" : ""
+                  }`}
+                >
+                  Eyeglasses
+                </Link>
+                <svg
+                  onClick={() => {
+                    setEyeglassesDropdown(!eyeglassesDropdown);
+                    setSunglassesDropdown(false);
+                  }}
+                  className={`w-4 h-4 transform transition-transform duration-300 ${
+                    eyeglassesDropdown ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </div>
+              {eyeglassesDropdown && (
+                <div className="ml-4 mt-2 flex flex-col gap-2 transform transition-transform duration-300 ease-in-out">
+                  {["Male", "Female", "Kids"].map((item) => (
+                    <Link
+                      key={item}
+                      to={`/products/eyeglasses/${item.toLowerCase()}`}
+                      className="p-2 hover:text-mainColor"
+                    >
+                      {item}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <Link
               to="/products"
-              className={`p-2    rounded-lg  ${
-                isActive("/products") ? "text-mainColor" : ""
-              }`}
-            >
-              Sunglasses
-            </Link>
-            <Link
-              to="/products"
-              className={`p-2    rounded-lg  ${
-                isActive("/products") ? "text-mainColor" : ""
-              }`}
-            >
-              Eyeglasses
-            </Link>
-            <Link
-              to="/products"
-              className={`p-2    rounded-lg ${
+              className={`p-2 rounded-lg ${
                 isActive("/contact") ? "text-mainColor" : ""
               }`}
             >
               Prescription
             </Link>
+
             <Link
               to="/favourites"
               className="p-2 rounded-full transition duration-300 ease-in-out cursor-pointer flex items-center gap-2"
@@ -257,68 +352,29 @@ function Header() {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                fill={"red"}
+                fill="red"
                 width="18"
                 height="18"
-                stroke={"none"}
+                stroke="none"
               >
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
               </svg>
             </Link>
-            {
-              userStatus && (
-                <button
-                  onClick={handleLogout}
-                  className="w-full p-2    rounded-lg text-left"
-                >
-                  Logout
-                </button>
-              )
-              //  : (
-              //   <>
-              //     <Link to="/login" className="block p-2   rounded-lg mb-2">
-              //       Login
-              //     </Link>
-              //     <Link to="/signup" className="block p-2   rounded-lg">
-              //       Sign Up
-              //     </Link>
-              //   </>
-              // )
-            }
+
+            {userStatus && (
+              <button
+                onClick={handleLogout}
+                className="w-full p-2 rounded-lg text-left"
+              >
+                Logout
+              </button>
+            )}
             {admin && (
               <Link to="/admin" className="block p-2 rounded-lg">
                 Admin
               </Link>
             )}
           </div>
-
-          {/* <div className="">
-            {
-              userStatus && (
-                <button
-                  onClick={handleLogout}
-                  className="w-full p-2    rounded-lg text-left"
-                >
-                  Logout
-                </button>
-              )
-              //  : (
-              //   <>
-              //     <Link to="/login" className="block p-2   rounded-lg mb-2">
-              //       Login
-              //     </Link>
-              //     <Link to="/signup" className="block p-2   rounded-lg">
-              //       Sign Up
-              //     </Link>
-              //   </>
-              // )
-            }
-            {admin && (
-              <Link to="/admin" className="block p-2   rounded-lg mt-2">
-                Admin
-              </Link>
-            )}
-          </div> */}
         </div>
       </div>
     </>
