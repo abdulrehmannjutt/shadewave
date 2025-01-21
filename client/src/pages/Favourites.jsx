@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import HomeCards from "../components/HomeCards";
 import Cart from "../components/Cart";
+import ProductCard from "../components/ProductCard";
 
 const Favourites = () => {
   const favourites = useSelector((state) => state.favourites.favourites);
@@ -18,7 +18,7 @@ const Favourites = () => {
           {favourites && favourites.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {favourites.map((favourite) => (
-                <HomeCards
+                <ProductCard
                   key={favourite.productId}
                   productId={favourite.productId}
                   img={favourite.img}

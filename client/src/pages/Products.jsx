@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner";
 import Cart from "../components/Cart";
-import HomeCards from "../components/HomeCards";
+import ProductCard from "../components/ProductCard";
 import { BACKEND_BASE_URL } from "../constants/constants";
 
 const Products = () => {
@@ -206,7 +206,7 @@ const Products = () => {
                 key={index}
                 className="p-2 w-full sm:w-1/2 md:w-1/2 lg:w-1/3"
               >
-                <HomeCards
+                <ProductCard
                   productId={product._id}
                   img={`${BACKEND_BASE_URL}admin/image/${product.images[0]}`}
                   imgDimensions="w-full h-[300px] object-cover"

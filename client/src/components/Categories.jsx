@@ -27,7 +27,7 @@ const Categories = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-neutral-50 max-w-screen-2xl mx-auto">
+    <div className="w-full bg-neutral-50 max-w-screen-2xl mx-auto">
       <div className="mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3">
           {categories.map((category, index) => (

@@ -26,7 +26,7 @@ export default {
         smokyblack: "#100C08",
         whity: "#f5f5f5",
         wooden: "#A0522D",
-        blackCustom: "#333333",
+        blackCustom: "#1f1f24",
         blackCustomBg: "#0A0A0A",
         greyCustom: "#A5A5A5",
       },

@@ -199,7 +199,7 @@ const CategoryTable = () => {
                 <tr key={index} className="border-b dark:border-gray-700">
                   <td className="px-4 py-3 uppercase">{index + 1}</td>
                   <td className="px-4 py-3">{category.category}</td>
-                  <td className="px-4 py-3 ">
+                  <td className="px-4 py-3">
                     {category.subCategories.map((subCategory, index) => (
                       <div key={index}>{subCategory}</div>
                     ))}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-// HomeCards component to display each product in the dropdown
-function HomeCards({ productId, img, imgDimensions, title, price }) {
+// ProductCard component to display each product in the dropdown
+function ProductCard({ productId, img, imgDimensions, title, price }) {
   return (
     <div className="flex justify-between gap-2 items-center py-1">
       <div className="flex gap-2 items-center">
@@ -159,7 +159,7 @@ const HeaderSearchBar = () => {
                     key={product.productId}
                     className="block w-full text-left px-4 py-2 bg-white text-mainColor hover:bg-blue-200"
                   >
-                    <HomeCards
+                    <ProductCard
                       productId={product.productId}
                       img={product.img}
                       imgDimensions={product.imgDimensions}
@@ -205,7 +205,7 @@ const HeaderSearchBar = () => {
                   className="py-1 border-b border-mainColor"
                 >
                   <a href="/products">
-                    <HomeCards
+                    <ProductCard
                       productId={product.productId}
                       img={product.img}
                       imgDimensions={product.imgDimensions}
