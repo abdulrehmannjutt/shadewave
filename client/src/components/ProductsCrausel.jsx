@@ -4,7 +4,7 @@ import { BACKEND_BASE_URL } from "../constants/constants";
 import ProductCard from "./ProductCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const ProductsCrausel = ({ products, heading }) => {
+const ProductsCrausel = ({ products, heading, loading }) => {
   const sliderRef = useRef(null);
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
@@ -90,7 +90,14 @@ const ProductsCrausel = ({ products, heading }) => {
 
   return (
     <section>
-      <h1 className="uppercase sm:text-[60px] text-[30px] text-center text-blackCustom">{heading}</h1>
+      {loading === false ? (
+        <h1 className="uppercase sm:text-[60px] text-[30px] text-center text-blackCustom">
+          {heading}
+        </h1>
+      ) : (
+        ""
+      )}
+
       <div className="relative max-w-screen-2xl mx-auto">
         <div
           ref={sliderRef}
