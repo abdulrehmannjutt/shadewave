@@ -12,6 +12,7 @@
 
 body {
   background-color: #f5f5f5;
+  background-color: #FFFFFF;
   /* font-family: 'Lato', sans-serif; */
   font-family: "Oswald";
 }
@@ -48,8 +49,6 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #b0b0b0;
-  background: #FFFFFF;
-  background: #0A0A0A;
   /* Color when hovering over the thumb */
 }
 

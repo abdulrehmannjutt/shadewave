@@ -132,7 +132,7 @@ function Footer() {
                 About Us
               </Link>
             </div>
-            <p className="950:text-md text-sm 950:text-right text-center">
+            <p className="950:text-md sm:text-sm text-xs 950:text-right text-center">
               Copyright ©{new Date().getFullYear()} Shade Wave. All Rights
               Reserved.
             </p>
