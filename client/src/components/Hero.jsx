@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full max-w-screen-2xl mx-auto">
       {/* Hero Image Container - 60vh on mobile, natural height on desktop */}
       <div className="relative sm:h-auto h-[60vh]">
         <img

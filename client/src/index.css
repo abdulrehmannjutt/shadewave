@@ -48,6 +48,8 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #b0b0b0;
+  background: #FFFFFF;
+  background: #0A0A0A;
   /* Color when hovering over the thumb */
 }
 

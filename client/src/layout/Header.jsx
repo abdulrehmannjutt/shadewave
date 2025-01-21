@@ -46,7 +46,7 @@ function Header() {
     <>
       <header className="sticky top-0 right-0 bottom-0 z-10 py-4 md:py-6 px-2 md:px-5 bg-blackCustomBg">
         <nav className="w-full z-20">
-          <div className="max-w-screen-2xl flex 950:flex-row 950:gap-0 gap-[10px] items-center justify-between mx-auto ">
+          <div className="max-w-screen-2xl flex md:flex-row md:gap-0 gap-[10px] items-center justify-between mx-auto ">
             <Link to="/" className="text-white">
               <div className="flex justify-center items-center gap-1">
                 <img
@@ -61,36 +61,28 @@ function Header() {
 
             {/* Desktop Navigation Links */}
             <div
-              className={`950:flex hidden justify-center md:items-center space-y-2 md:space-y-0 text-center mb-2 md:mb-0 gap-[32px] py-2`}
+              className={`md:flex hidden justify-center md:items-center space-y-2 md:space-y-0 text-center mb-2 md:mb-0 gap-[32px] py-2`}
             >
               <Link
-                to="/"
+                to="/products"
                 className={`${headerTextClasses} ${
-                  isActive("/") ? `${activeClasses}` : `${notActiveClasses}`
+                  isActive("/products")
+                    ? `${activeClasses}`
+                    : `${notActiveClasses}`
                 }`}
               >
-                Home
+                Sunglasses
               </Link>
 
               <Link
-                to="/contact"
+                to="/products"
                 className={`${headerTextClasses} ${
-                  isActive("/contact")
+                  isActive("/products")
                     ? `${activeClasses}`
                     : `${notActiveClasses}`
                 }`}
               >
-                Contact Us
-              </Link>
-              <Link
-                to="/about"
-                className={`${headerTextClasses} ${
-                  isActive("/about")
-                    ? `${activeClasses}`
-                    : `${notActiveClasses}`
-                }`}
-              >
-                About Us
+                Eyeglasses
               </Link>
               <Link
                 to="/products"
@@ -100,12 +92,12 @@ function Header() {
                     : `${notActiveClasses}`
                 }`}
               >
-                SUNGLASSES
+                Prescription
               </Link>
             </div>
 
             <div className="flex items-center gap-5">
-              <div className="950:flex hidden items-center justify-center gap-2">
+              <div className="md:flex hidden items-center justify-center gap-2">
                 {
                   userStatus && (
                     <button
@@ -142,7 +134,7 @@ function Header() {
               </div>
 
               {/* heart */}
-              <div className="950:flex hidden cursor-pointer">
+              <div className="md:flex hidden cursor-pointer">
                 <Link
                   to="/favourites"
                   className="p-2 hover:bg-gray-100 rounded-full transition duration-300 ease-in-out"
@@ -166,7 +158,7 @@ function Header() {
                   {/* <i className="fa-solid fa-cart-shopping"></i> */}
                   <img src="images/shopping-cart.webp" width={28} height={28} />
                   {cartItems.length > 0 && (
-                    <span className="absolute bottom-[15px] 950:right-[-7px] right-[25px] bg-mainColor text-white text-xs font-bold rounded-full px-1">
+                    <span className="absolute bottom-[15px] md:right-[-7px] right-[25px] bg-mainColor text-white text-xs font-bold rounded-full px-1">
                       {cartItems.reduce(
                         (total, item) => total + item.quantity,
                         0
@@ -178,7 +170,7 @@ function Header() {
                 {/* Mobile Menu Button */}
                 <button
                   onClick={() => setIsOpen(!isOpen)}
-                  className="950:hidden text-gray-700 focus:outline-none cursor-pointer"
+                  className="md:hidden text-gray-700 focus:outline-none cursor-pointer"
                 >
                   <svg
                     className="w-6 h-6"
@@ -234,12 +226,12 @@ function Header() {
         <div className="flex flex-col justify-between p-4">
           <div className="flex flex-col gap-5">
             <Link
-              to="/"
+              to="/products"
               className={`p-2    rounded-lg  ${
-                isActive("/") ? "text-mainColor" : ""
+                isActive("/products") ? "text-mainColor" : ""
               }`}
             >
-              Home
+              Sunglasses
             </Link>
             <Link
               to="/products"
@@ -247,23 +239,15 @@ function Header() {
                 isActive("/products") ? "text-mainColor" : ""
               }`}
             >
-              Products
+              Eyeglasses
             </Link>
             <Link
-              to="/contact"
+              to="/products"
               className={`p-2    rounded-lg ${
                 isActive("/contact") ? "text-mainColor" : ""
               }`}
             >
-              Contact Us
-            </Link>
-            <Link
-              to="/about"
-              className={`p-2    rounded-lg ${
-                isActive("/about") ? "text-mainColor" : ""
-              }`}
-            >
-              About Us
+              Prescription
             </Link>
             <Link
               to="/favourites"
