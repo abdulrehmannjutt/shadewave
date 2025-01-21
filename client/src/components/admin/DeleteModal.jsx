@@ -10,7 +10,6 @@ import { BACKEND_BASE_URL } from "../../constants/constants";
 
 function DeleteModal({
   url = "",
-  text = "",
   setDeleteModalForProducts = () => {},
 }) {
   const dispatch = useDispatch();

@@ -24,7 +24,7 @@ const CategoryTable = () => {
   const allCategoriesApi = async () => {
     setLoading(true);
     const response = await fetch(`${BACKEND_BASE_URL}category/categories`);
-    if(response.status === 204) setLoading(false);
+    if (response.status === 204) setLoading(false);
     const data = await response.json();
     dispatch(setCategories(data || []));
     setLoading(false);
@@ -34,13 +34,16 @@ const CategoryTable = () => {
     allCategoriesApi();
   }, [isCategoriesUpdated, isProductsUpdate]);
 
+  const capitalizeFirstLetter = (string) =>
+    string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (selectedCategory) {
       const subCategoriesArray = subCategories
         .split(",")
-        .map((item) => item.trim());
+        .map((item) => capitalizeFirstLetter(item.trim())); // Capitalize each subcategory
 
       const res = await fetch(
         `${BACKEND_BASE_URL}category/updatecategory/${selectedCategory?._id}`,
@@ -50,7 +53,7 @@ const CategoryTable = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            category,
+            category: capitalizeFirstLetter(category), // Capitalize category
             subCategories: subCategoriesArray,
           }),
         }
@@ -64,6 +67,9 @@ const CategoryTable = () => {
             )
           )
         );
+        setCategory("");
+        setSubCategories("");
+        setSelectedCategory("");
         toast.success("Category Updated");
       } else if (res.status === 404) {
         toast.error("Category with this name does not exist!");
@@ -71,10 +77,9 @@ const CategoryTable = () => {
         toast.error("Failed to update category");
       }
     } else {
-      // Split the subCategories string into an array
       const subCategoriesArray = subCategories
         .split(",")
-        .map((item) => item.trim());
+        .map((item) => capitalizeFirstLetter(item.trim())); // Capitalize each subcategory
 
       const res = await fetch(`${BACKEND_BASE_URL}category/addcategory`, {
         method: "POST",
@@ -82,12 +87,14 @@ const CategoryTable = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          category,
+          category: capitalizeFirstLetter(category), // Capitalize category
           subCategories: subCategoriesArray,
         }),
       });
 
       if (res.status === 201) {
+        setCategory("");
+        setSubCategories("");
         toast.success("Category Added");
         setIsCategoriesUpdate(true);
       } else if (res.status === 409) {
@@ -99,7 +106,7 @@ const CategoryTable = () => {
   };
 
   return (
-    <section className="min-h-screen">
+    <section className="">
       <form onSubmit={handleSubmit} ref={topRef}>
         <div className="flex flex-wrap gap-4 mb-4 items-end px-[16px]">
           <div>
@@ -143,7 +150,7 @@ const CategoryTable = () => {
               selectedCategory
                 ? "text-green-700 border border-green-700"
                 : "text-blueish border border-blueish"
-            } inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`}
+            } inline-flex items-center bg-primary-700 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`}
           >
             {selectedCategory ? "Edit Category" : "Add Category"}
           </button>
