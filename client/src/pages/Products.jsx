@@ -109,6 +109,7 @@ const Products = () => {
                   category={product.category}
                   subCategory={product.subCategory}
                   images={product?.images}
+                  classes="lg:w-[390px] lg:h-[390px] sm:w-[320px] sm:h-[320px] 430:w-[210px] 430:h-[210px] w-[175px] h-[175px]"
                 />
               </div>
             ))
