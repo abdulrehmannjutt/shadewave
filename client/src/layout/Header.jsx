@@ -1,14 +1,20 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { togglePopUpCart } from "../redux/cart/cartSlice";
+import {
+  setCheckCategory,
+  setCheckSubCategory,
+} from "../redux/admin/adminSlice";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [sunglassesDropdown, setSunglassesDropdown] = useState(false);
   const [eyeglassesDropdown, setEyeglassesDropdown] = useState(false);
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const checkCategory = useSelector((state) => state.admin.checkCategory);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [admin, setAdmin] = useState(false);
@@ -49,8 +55,12 @@ function Header() {
       {items.map((item, index) => (
         <Link
           key={index}
-          to={`/products/${type}/${item.toLowerCase()}`}
+          to="/products"
           className="block px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-mainColor transition-colors duration-200"
+          onClick={() => {
+            dispatch(setCheckSubCategory(item));
+            dispatch(setCheckCategory(type));
+          }}
         >
           {item}
         </Link>
@@ -63,7 +73,11 @@ function Header() {
       <header className="sticky top-0 right-0 bottom-0 z-10 py-4 md:py-6 px-2 md:px-5 bg-blackCustomBg">
         <nav className="w-full z-20">
           <div className="max-w-screen-2xl flex md:flex-row md:gap-0 gap-[10px] items-center justify-between mx-auto">
-            <Link to="/" className="text-white">
+            <Link
+              to="/"
+              className="text-white"
+              onClick={() => dispatch(setCheckCategory(""))}
+            >
               <div className="flex justify-center items-center gap-1">
                 <img
                   src="/images/shadewave.png"
@@ -82,17 +96,24 @@ function Header() {
                 onMouseEnter={() => setSunglassesDropdown(true)}
                 onMouseLeave={() => setSunglassesDropdown(false)}
               >
-                <button
+                <Link
+                  to="/products"
                   className={`${headerTextClasses} ${
-                    isActive("/products") ? activeClasses : notActiveClasses
+                    checkCategory === "Sunglasses"
+                      ? activeClasses
+                      : notActiveClasses
                   }`}
+                  onClick={() => {
+                    dispatch(setCheckCategory("Sunglasses"));
+                    dispatch(setCheckSubCategory(""));
+                  }}
                 >
                   Sunglasses
-                </button>
+                </Link>
                 {sunglassesDropdown && (
                   <SubcategoryMenu
-                    items={["Male", "Female", "Kids"]}
-                    type="sunglasses"
+                    items={["Men", "Women", "Kids"]}
+                    type="Sunglasses"
                   />
                 )}
               </div>
@@ -102,17 +123,24 @@ function Header() {
                 onMouseEnter={() => setEyeglassesDropdown(true)}
                 onMouseLeave={() => setEyeglassesDropdown(false)}
               >
-                <button
+                <Link
+                  to="/products"
                   className={`${headerTextClasses} ${
-                    isActive("/products") ? activeClasses : notActiveClasses
+                    checkCategory === "Eyeglasses"
+                      ? activeClasses
+                      : notActiveClasses
                   }`}
+                  onClick={() => {
+                    dispatch(setCheckCategory("Eyeglasses"));
+                    dispatch(setCheckSubCategory(""));
+                  }}
                 >
                   Eyeglasses
-                </button>
+                </Link>
                 {eyeglassesDropdown && (
                   <SubcategoryMenu
-                    items={["Male", "Female", "Kids"]}
-                    type="eyeglasses"
+                    items={["Men", "Women", "Kids"]}
+                    type="Eyeglasses"
                   />
                 )}
               </div>
@@ -120,8 +148,14 @@ function Header() {
               <Link
                 to="/products"
                 className={`${headerTextClasses} ${
-                  isActive("/products") ? activeClasses : notActiveClasses
+                  checkCategory === "Prescription"
+                    ? activeClasses
+                    : notActiveClasses
                 }`}
+                onClick={() => {
+                  dispatch(setCheckCategory("Prescription"));
+                  dispatch(setCheckSubCategory(""));
+                }}
               >
                 Prescription
               </Link>
@@ -144,6 +178,7 @@ function Header() {
                     className={`${headerTextClasses} ${
                       isActive("/admin") ? activeClasses : notActiveClasses
                     }`}
+                    onClick={() => dispatch(setCheckCategory(""))}
                   >
                     Admin
                   </Link>
@@ -153,7 +188,10 @@ function Header() {
               <div className="md:flex hidden cursor-pointer">
                 <Link
                   to="/favourites"
-                  className="p-2 hover:bg-gray-100 rounded-full transition duration-300 ease-in-out"
+                  className={`p-2 hover:bg-gray-100 rounded-full transition duration-300 ease-in-out ${
+                    isActive("/favourites") ? "bg-gray-100" : ""
+                  }`}
+                  onClick={() => dispatch(setCheckCategory(""))}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -249,8 +287,12 @@ function Header() {
                 <Link
                   to="/products"
                   className={`w-full text-left p-2 rounded-lg flex justify-between items-center ${
-                    isActive("/products") ? "text-mainColor" : ""
+                    checkCategory === "Sunglasses" ? "text-mainColor" : ""
                   }`}
+                  onClick={() => {
+                    dispatch(setCheckCategory("Sunglasses"));
+                    dispatch(setCheckSubCategory(""));
+                  }}
                 >
                   Sunglasses
                 </Link>
@@ -276,11 +318,15 @@ function Header() {
               </div>
               {sunglassesDropdown && (
                 <div className="ml-4 mt-2 flex flex-col gap-2 transform transition-transform duration-300 ease-in-out">
-                  {["Male", "Female", "Kids"].map((item) => (
+                  {["Men", "Women", "Kids"].map((item) => (
                     <Link
                       key={item}
-                      to={`/products/sunglasses/${item.toLowerCase()}`}
+                      to="/products"
                       className="p-2 hover:text-mainColor"
+                      onClick={() => {
+                        dispatch(setCheckSubCategory(item));
+                        dispatch(setCheckCategory("Sunglasses"));
+                      }}
                     >
                       {item}
                     </Link>
@@ -295,8 +341,12 @@ function Header() {
                 <Link
                   to="/products"
                   className={`w-full text-left p-2 rounded-lg flex justify-between items-center ${
-                    isActive("/products") ? "text-mainColor" : ""
+                    checkCategory === "Eyeglasses" ? "text-mainColor" : ""
                   }`}
+                  onClick={() => {
+                    dispatch(setCheckCategory("Eyeglasses"));
+                    dispatch(setCheckSubCategory(""));
+                  }}
                 >
                   Eyeglasses
                 </Link>
@@ -322,11 +372,15 @@ function Header() {
               </div>
               {eyeglassesDropdown && (
                 <div className="ml-4 mt-2 flex flex-col gap-2 transform transition-transform duration-300 ease-in-out">
-                  {["Male", "Female", "Kids"].map((item) => (
+                  {["Men", "Women", "Kids"].map((item) => (
                     <Link
                       key={item}
-                      to={`/products/eyeglasses/${item.toLowerCase()}`}
+                      to="/products"
                       className="p-2 hover:text-mainColor"
+                      onClick={() => {
+                        dispatch(setCheckSubCategory(item));
+                        dispatch(setCheckCategory("Eyeglasses"));
+                      }}
                     >
                       {item}
                     </Link>
@@ -338,15 +392,22 @@ function Header() {
             <Link
               to="/products"
               className={`p-2 rounded-lg ${
-                isActive("/contact") ? "text-mainColor" : ""
+                checkCategory === "Prescription" ? "text-mainColor" : ""
               }`}
+              onClick={() => {
+                dispatch(setCheckCategory("Prescription"));
+                dispatch(setCheckSubCategory(""));
+              }}
             >
               Prescription
             </Link>
 
             <Link
               to="/favourites"
-              className="p-2 rounded-full transition duration-300 ease-in-out cursor-pointer flex items-center gap-2"
+              className={`p-2 rounded-full transition duration-300 ease-in-out cursor-pointer flex items-center gap-2 ${
+                isActive("/favourites") ? activeClasses : ""
+              }`}
+              onClick={() => dispatch(setCheckCategory(""))}
             >
               <span>Favourites</span>
               <svg
@@ -370,7 +431,13 @@ function Header() {
               </button>
             )}
             {admin && (
-              <Link to="/admin" className="block p-2 rounded-lg">
+              <Link
+                to="/admin"
+                className={`p-2 rounded-lg ${
+                  isActive("/admin") === "Prescription" ? "text-mainColor" : ""
+                }`}
+                onClick={() => dispatch(setCheckCategory(""))}
+              >
                 Admin
               </Link>
             )}

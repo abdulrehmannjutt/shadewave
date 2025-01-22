@@ -8,6 +8,8 @@ const initialState = {
   products: [],
   isProductsUpdate: false,
   categories: [],
+  checkCategory: "",
+  checkSubCategory: "",
 };
 
 export const adminSlice = createSlice({
@@ -18,13 +20,13 @@ export const adminSlice = createSlice({
       state.modal = !state.modal;
     },
     toggleDeleteProductModal: (state) => {
-        state.deleteProductModal = !state.deleteProductModal;
+      state.deleteProductModal = !state.deleteProductModal;
     },
     togglePreviewModal: (state, action) => {
-        state.previewModal = !state.previewModal;
+      state.previewModal = !state.previewModal;
     },
     setSelectedProduct: (state, action) => {
-      state.selectedProduct = action.payload
+      state.selectedProduct = action.payload;
     },
     setProducts: (state, action) => {
       state.products = action.payload;
@@ -33,11 +35,27 @@ export const adminSlice = createSlice({
       state.isProductsUpdate = action.payload;
     },
     setCategories: (state, action) => {
-      state.categories = action.payload
-    }
+      state.categories = action.payload;
+    },
+    setCheckCategory: (state, action) => {
+      state.checkCategory = action.payload;
+    },
+    setCheckSubCategory: (state, action) => {
+      state.checkSubCategory = action.payload;
+    },
   },
 });
 
-export const { toggleModal, toggleDeleteProductModal, togglePreviewModal, setSelectedProduct, setProducts, setIsProductsUpdate, setCategories } = adminSlice.actions;
+export const {
+  toggleModal,
+  toggleDeleteProductModal,
+  togglePreviewModal,
+  setSelectedProduct,
+  setProducts,
+  setIsProductsUpdate,
+  setCategories,
+  setCheckCategory,
+  setCheckSubCategory
+} = adminSlice.actions;
 
 export default adminSlice.reducer;
