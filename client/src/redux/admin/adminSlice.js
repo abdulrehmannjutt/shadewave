@@ -22,7 +22,7 @@ export const adminSlice = createSlice({
     toggleDeleteProductModal: (state) => {
       state.deleteProductModal = !state.deleteProductModal;
     },
-    togglePreviewModal: (state, action) => {
+    togglePreviewModal: (state) => {
       state.previewModal = !state.previewModal;
     },
     setSelectedProduct: (state, action) => {

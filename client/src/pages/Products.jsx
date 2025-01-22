@@ -80,7 +80,7 @@ const Products = () => {
 
         {/* Main content container */}
         <div
-          className={`flex flex-wrap justify-center items-center md:gap-4 gap-2 py-[30px] ${
+          className={`flex flex-wrap justify-center items-center md:gap-2 gap-1 py-[30px] ${
             loading ? "justify-center" : ""
           }`}
         >
@@ -101,7 +101,7 @@ const Products = () => {
                 <ProductCard
                   productId={product._id}
                   img={`${BACKEND_BASE_URL}admin/image/${product.images[0]}`}
-                  imgDimensions="lg:w-[390px] lg:h-[390px] sm:w-[320px] sm:h-[320px] w-[210] h-[210px] object-cover"
+                  imgDimensions="lg:w-[390px] lg:h-[390px] sm:w-[320px] sm:h-[320px] 430:w-[210px] 430:h-[210px] w-[180px] h-[180px] object-cover"
                   title={product.name}
                   paragraph={product.description}
                   price={product.price}

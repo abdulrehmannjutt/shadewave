@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, togglePopUpCart } from "../redux/cart/cartSlice";
+// import { addToCart, togglePopUpCart } from "../redux/cart/cartSlice";
 import {
   addToFavourites,
   removeFromFavourites,
@@ -44,20 +44,20 @@ function ProductCard({
     }
   };
 
-  const handleAddToCart = () => {
-    dispatch(
-      addToCart({
-        productId,
-        productImg: img,
-        category,
-        subCategory,
-        title,
-        price,
-        quantity: 1,
-      })
-    );
-    dispatch(togglePopUpCart());
-  };
+  // const handleAddToCart = () => {
+  //   dispatch(
+  //     addToCart({
+  //       productId,
+  //       productImg: img,
+  //       category,
+  //       subCategory,
+  //       title,
+  //       price,
+  //       quantity: 1,
+  //     })
+  //   );
+  //   dispatch(togglePopUpCart());
+  // };
 
   return (
     <div
