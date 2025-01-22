@@ -9,6 +9,7 @@ import { TailSpin } from "react-loader-spinner";
 import ProductCard from "../components/ProductCard";
 import { togglePopUpCart } from "../redux/cart/cartSlice";
 import ImageCarousel from "../components/ImageCarousel";
+import ProductsCrausel from "../components/ProductsCrausel";
 
 function SingleProduct() {
   const { products, loading } = useProducts();
@@ -20,8 +21,8 @@ function SingleProduct() {
   console.log("images", images);
   return (
     <section className="text-gray-600 body-font overflow-hidden bg-white min-h-screen">
-      <div className="container px-5 py-24 mx-auto">
-        <div className="flex justify-between sm:flex-nowrap flex-wrap">
+      <div className="md:py-16 py-9 mx-auto">
+        <div className="flex justify-between sm:flex-nowrap flex-wrap md:px-16 px-7">
           <ImageCarousel images={images} baseUrl={BACKEND_BASE_URL} />
           <div className="w-full sm:pl-10 sm:py-6 mt-6 sm:mt-0">
             <h1 className="text-gray-900 sm:text-3xl text-xl title-font font-medium mb-1">
@@ -102,7 +103,8 @@ function SingleProduct() {
                   <h2 className="sm:text-2xl text-lg font-bold text-blackCustom uppercase border-b-2 pb-2 border-mainColor text-center inline-block mx-auto sm:mt-12 mt-7">
                     Related Products
                   </h2>
-                  <div className="flex flex-wrap  justify-center items-center gap-10">
+                  <ProductsCrausel products={relatedProducts} />
+                  {/* <div className="flex flex-wrap  justify-center items-center gap-10">
                     {relatedProducts.map((category, index) => (
                       <div
                         key={index}
@@ -121,7 +123,7 @@ function SingleProduct() {
                         />
                       </div>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               ) : null;
             })()

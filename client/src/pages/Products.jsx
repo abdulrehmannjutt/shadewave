@@ -80,7 +80,7 @@ const Products = () => {
 
         {/* Main content container */}
         <div
-          className={`flex flex-wrap justify-center items-center md:gap-3 gap-2 py-[30px] ${
+          className={`flex flex-wrap justify-center items-center md:gap-3 gap-2 md:py-[30px] py-[10px] ${
             loading ? "justify-center" : ""
           }`}
         >
@@ -109,7 +109,7 @@ const Products = () => {
                   category={product.category}
                   subCategory={product.subCategory}
                   images={product?.images}
-                  classes="lg:w-[390px] lg:h-[390px] sm:w-[320px] sm:h-[320px] 430:w-[210px] 430:h-[210px] w-[175px] h-[175px]"
+                  classes="lg:w-[390px] sm:w-[320px] 430:w-[210px] w-[175px]"
                 />
               </div>
             ))
