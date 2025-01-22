@@ -101,7 +101,7 @@ const Products = () => {
                 <ProductCard
                   productId={product._id}
                   img={`${BACKEND_BASE_URL}admin/image/${product.images[0]}`}
-                  imgDimensions="lg:w-[390px] lg:h-[390px] sm:w-[320px] sm:h-[320px] 430:w-[210px] 430:h-[210px] w-[180px] h-[180px] object-cover"
+                  imgDimensions="lg:w-[390px] lg:h-[390px] sm:w-[320px] sm:h-[320px] 430:w-[210px] 430:h-[210px] w-[155px] h-[155px] object-cover"
                   title={product.name}
                   paragraph={product.description}
                   price={product.price}
