@@ -6,7 +6,7 @@ const Favourites = () => {
   const favourites = useSelector((state) => state.favourites.favourites);
 
   return (
-    <section className={`px-10 py-10 bg-white min-h-screen`}>
+    <section className={`lg:px-10 py-10 bg-white min-h-screen`}>
       <div className="">
         <div className="flex">
           <h2 className="sm:text-3xl text-lg font-bold text-blackCustom uppercase border-b-2 pb-2 border-mainColor inline-block mx-auto mb-2">
@@ -14,15 +14,15 @@ const Favourites = () => {
           </h2>
         </div>
 
-        <div className="mt-6 flex justify-center">
+        <div className="mt-6 ">
           {favourites && favourites.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="flex flex-wrap justify-center md:gap-4 gap-2">
               {favourites.map((favourite) => (
                 <ProductCard
                   key={favourite.productId}
                   productId={favourite.productId}
                   img={favourite.img}
-                  imgDimensions="w-full h-[300px] object-cover"
+                  imgDimensions="lg:w-[390px] lg:h-[390px] sm:w-[320px] sm:h-[320px] 430:w-[210px] 430:h-[210px] w-[175px] h-[175px]"
                   title={favourite.title}
                   category={favourite.category}
                   subCategory={favourite.subCategory}
@@ -30,6 +30,7 @@ const Favourites = () => {
                   price={favourite.price}
                   bgColor={favourite.bgColor}
                   images={favourite?.images}
+                  classes="lg:w-[390px] sm:w-[320px] 430:w-[210px] w-[175px]"
                 />
               ))}
             </div>

@@ -188,9 +188,7 @@ function Header() {
               <div className="md:flex hidden cursor-pointer">
                 <Link
                   to="/favourites"
-                  className={`p-2 hover:bg-gray-100 rounded-full transition duration-300 ease-in-out ${
-                    isActive("/favourites") ? "bg-gray-100" : ""
-                  }`}
+                  className={`p-2 hover:bg-gray-100 rounded-full transition duration-300 ease-in-out`}
                   onClick={() => dispatch(setCheckCategory(""))}
                 >
                   <svg

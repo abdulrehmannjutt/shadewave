@@ -39,10 +39,13 @@ function ProductCard({
           price,
           bgColor,
           paragraph,
+          images,
         })
       );
     }
   };
+
+  console.log("images", images);
 
   // const handleAddToCart = () => {
   //   dispatch(
@@ -64,7 +67,7 @@ function ProductCard({
       className={`overflow-hidden flex flex-col bg-white shadow-lg transition-shadow ${classes}`}
     >
       <img
-        className={`${imgDimensions} ${bgColor} cursor-pointer transition duration-300 ease-in-out hover:scale-110`}
+        className={`${imgDimensions} ${bgColor} cursor-pointer transition duration-300 ease-in-out hover:scale-110 object-contain`}
         src={img}
         alt={title}
         onClick={() => {
@@ -81,17 +84,17 @@ function ProductCard({
           });
         }}
       />
-      <div className="p-4 bg-white flex flex-col">
+      <div className="md:p-4 p-2 bg-white flex flex-col">
         <div className="flex flex-col gap-4">
-          <h1 className="text-[18px] font-semibold text-blackCustom uppercase">
+          <h1 className="md:text-[18px] text-[16px] font-semibold text-blackCustom uppercase">
             {title}
           </h1>
-          <span className="text-md font-semibold text-blackCustom">
+          <span className="md:text-base text-sm font-semibold text-blackCustom">
             Rs {price}
           </span>
           <button
             onClick={handleFavoriteClick}
-            className="cursor-pointer hover:bg-gray-100 rounded-full transition duration-300 ease-in-out"
+            className="cursor-pointer rounded-full transition duration-300 ease-in-out"
             aria-label={
               isFavourite ? "Remove from favorites" : "Add to favorites"
             }

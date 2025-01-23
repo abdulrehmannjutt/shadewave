@@ -94,7 +94,7 @@ function SingleProduct() {
             (() => {
               const relatedProducts = products.filter(
                 (product) =>
-                  product.subCategory === subCategory && product.name !== title
+                  product.category === category && product.name !== title
               );
 
               // Render "Related Products" text and products only if relatedProducts is not empty
