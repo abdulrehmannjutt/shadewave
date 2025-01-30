@@ -18,7 +18,7 @@ function ProductCard({
   category,
   subCategory,
   images,
-  classes
+  classes,
 }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -84,7 +84,7 @@ function ProductCard({
           });
         }}
       />
-      <div className="md:p-4 p-2 bg-white flex flex-col">
+      <div className="md:p-4 p-2  flex flex-col">
         <div className="flex flex-col gap-4">
           <h1 className="md:text-[18px] text-[16px] font-semibold text-blackCustom uppercase">
             {title}

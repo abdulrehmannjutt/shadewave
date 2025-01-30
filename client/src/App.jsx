@@ -48,7 +48,6 @@ function App() {
             <Route path="signup" element={<SignUp />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/favourites" element={<Favourites />} />
-            {/* <Route path="*" element={<NoPage />} /> */}
           </Route>
         </Routes>
       </BrowserRouter>

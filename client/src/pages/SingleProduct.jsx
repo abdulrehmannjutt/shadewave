@@ -21,7 +21,7 @@ function SingleProduct() {
   console.log("images", images);
   return (
     <section className="text-gray-600 body-font overflow-hidden bg-white min-h-screen">
-      <div className="md:py-16 py-9 mx-auto">
+      <div className="md:pt-16 pt-9 mx-auto">
         <div className="flex justify-between sm:flex-nowrap flex-wrap md:px-16 px-7">
           <ImageCarousel images={images} baseUrl={BACKEND_BASE_URL} />
           <div className="w-full sm:pl-10 sm:py-6 mt-6 sm:mt-0">
@@ -100,8 +100,8 @@ function SingleProduct() {
               // Render "Related Products" text and products only if relatedProducts is not empty
               return relatedProducts.length > 0 ? (
                 <div className="flex flex-col gap-8">
-                  <h2 className="sm:text-2xl text-lg font-bold text-blackCustom uppercase border-b-2 pb-2 border-mainColor text-center inline-block mx-auto sm:mt-12 mt-7">
-                    Related Products
+                  <h2 className="sm:text-2xl text-lg font-bold text-blackCustom uppercase text-center inline-block mx-auto sm:mt-12 mt-7">
+                    You may also like
                   </h2>
                   <ProductsCrausel products={relatedProducts} />
                   {/* <div className="flex flex-wrap  justify-center items-center gap-10">
