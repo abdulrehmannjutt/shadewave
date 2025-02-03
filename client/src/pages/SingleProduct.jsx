@@ -6,7 +6,7 @@ import { useProducts } from "../hooks/apis";
 import Cart from "../components/Cart";
 import { BACKEND_BASE_URL } from "../constants/constants";
 import { TailSpin } from "react-loader-spinner";
-import ProductCard from "../components/ProductCard";
+import { ToastContainer, toast } from "react-toastify";
 import { togglePopUpCart } from "../redux/cart/cartSlice";
 import ImageCarousel from "../components/ImageCarousel";
 import ProductsCrausel from "../components/ProductsCrausel";
@@ -15,12 +15,20 @@ function SingleProduct() {
   const { products, loading } = useProducts();
   const dispatch = useDispatch();
   const location = useLocation();
-  const { img, title, paragraph, price, category, subCategory, images } =
-    location.state || {};
+  const {
+    img,
+    title,
+    paragraph,
+    price,
+    category,
+    subCategory,
+    images,
+    productId,
+  } = location.state || {};
 
-  console.log("images", images);
   return (
     <section className="text-gray-600 body-font overflow-hidden bg-white min-h-screen">
+      <ToastContainer />
       <div className="md:pt-16 pt-9 mx-auto">
         <div className="flex justify-between sm:flex-nowrap flex-wrap md:px-16 px-7">
           <ImageCarousel images={images} baseUrl={BACKEND_BASE_URL} />
@@ -47,6 +55,7 @@ function SingleProduct() {
                 onClick={() => {
                   dispatch(
                     addToCart({
+                      productId,
                       productImg: img,
                       category: category,
                       subCategory: subCategory,
@@ -55,10 +64,11 @@ function SingleProduct() {
                       quantity: 1,
                     })
                   );
-                  dispatch(togglePopUpCart());
+                  toast.success("Added to cart");
+                  // dispatch(togglePopUpCart());
                   // notify();
                 }}
-                className="flex text-white bg-mainColor border-transparent py-2 px-6 focus:outline-none hover:bg-white hover:text-mainColor hover:border hover:border-mainColor rounded"
+                className="flex text-white bg-mainColor border-transparent py-2 px-6 focus:outline-none hover:bg-white hover:text-mainColor hover:border hover:border-mainColor rounded-full border"
               >
                 Add to Cart
               </button>

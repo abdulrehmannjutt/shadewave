@@ -87,7 +87,7 @@ const OrderReceipt = ({ order, onClose }) => {
         <div id="receipt-content" className="space-y-4">
           {/* Receipt Header with Logo */}
           <div className="text-center border-b pb-3">
-            <img src="/images/eeSpark.png" alt="Logo" height={44} width={50} />
+            <img src="/images/shadewave.png" alt="Logo" height={44} width={50} />
             <h2 className="text-xl font-bold text-mainColor">Order Receipt</h2>
             <p className="text-gray-600 text-sm">
               {format(new Date(), "MMMM dd, yyyy HH:mm")}
@@ -193,7 +193,7 @@ const OrderReceipt = ({ order, onClose }) => {
               For any questions, please contact us
             </p>
             <p className="text-xs text-gray-600">
-              0329-6282733, sales@eespark.com, eespark733@gmail.com
+              0345-6502924, shadewave48@gmail.com
             </p>
           </div>
         </div>

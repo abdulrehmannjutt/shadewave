@@ -45,8 +45,6 @@ function ProductCard({
     }
   };
 
-  console.log("images", images);
-
   // const handleAddToCart = () => {
   //   dispatch(
   //     addToCart({
@@ -73,6 +71,7 @@ function ProductCard({
         onClick={() => {
           navigate("/singleproduct", {
             state: {
+              productId,
               img,
               title,
               paragraph,

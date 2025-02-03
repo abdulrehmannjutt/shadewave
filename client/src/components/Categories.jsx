@@ -1,7 +1,17 @@
+import {
+  setCheckCategory,
+  setCheckSubCategory,
+} from "../redux/admin/adminSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 const Categories = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const categories = [
     {
-      title: "MEN",
+      title: "Men",
       imageUrl:
         "https://media.ray-ban.com/cms/resource/image/1322682/portrait_ratio6x7/960/1120/4007098db00ec4670e5cf910b886cc1/E00BEAED449426CBD3144D1941361B93/rb-hp-buca-gender-man-d.jpg",
       imageUrl1:
@@ -9,7 +19,7 @@ const Categories = () => {
       alt: "Men's Category",
     },
     {
-      title: "WOMEN",
+      title: "Women",
       imageUrl:
         "https://media.ray-ban.com/cms/resource/image/1322678/portrait_ratio6x7/960/1120/192de2fa6389eca586691f1ff60ef184/0D652DC3976D63C17B3EA267E651DAC1/rb-hp-buca-gender-woman-d.jpg",
       imageUrl1:
@@ -17,7 +27,7 @@ const Categories = () => {
       alt: "Women's Category",
     },
     {
-      title: "KIDS",
+      title: "Kids",
       imageUrl:
         "https://media.ray-ban.com/cms/resource/image/1234760/portrait_ratio6x7/960/1120/5e74de9b95bd32e3d6d5b8bb1c143ed3/769844E9E81237E5B5F5B968D3B9D8D6/rb-hp-buca-gender-kids-d.jpg",
       imageUrl1:
@@ -42,20 +52,30 @@ const Categories = () => {
                     src={category.imageUrl}
                     alt={category.alt}
                     className="w-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500"
+                    onClick={() => {
+                      dispatch(setCheckSubCategory(category.title));
+                      dispatch(setCheckCategory("Sunglasses"));
+                      navigate("/products");
+                    }}
                   />
                 </div>
                 <div className="lg:hidden flex flex-col">
                   <img
                     src={category.imageUrl1}
                     alt={category.alt}
+                    onClick={() => {
+                      dispatch(setCheckSubCategory(category.title));
+                      dispatch(setCheckCategory("Sunglasses"));
+                      navigate("/products");
+                    }}
                     className="w-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>
 
               {/* Overlay with text */}
-              <div className="absolute inset-0 bg-black/20 flex items-end">
-                <h2 className="text-white text-2xl md:text-3xl font-bold p-6 w-full">
+              <div className="absolute inset-0 bg-black/20 flex items-end pointer-events-none">
+                <h2 className="text-white text-2xl md:text-3xl font-bold p-6 w-full uppercase">
                   {category.title}
                 </h2>
               </div>

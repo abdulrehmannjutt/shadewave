@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+
+  const navigate = useNavigate();
   return (
     <div className="relative w-full max-w-screen-2xl mx-auto">
       {/* Hero Image Container - 60vh on mobile, natural height on desktop */}
@@ -57,6 +60,9 @@ const Hero = () => {
                            rounded-full font-semibold 
                            hover:bg-opacity-90 transition-colors duration-300
                            mt-3 sm:mt-6"
+                onClick={() => {
+                  navigate("/products");
+                }}
               >
                 Shop Now
               </motion.button>

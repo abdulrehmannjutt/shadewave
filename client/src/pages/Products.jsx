@@ -69,7 +69,13 @@ const Products = () => {
                     className={`cursor-pointer lg:px-0 px-2 ${
                       checkSubCategory === subCategory ? "text-mainColor" : ""
                     }`}
-                    onClick={() => dispatch(setCheckSubCategory(subCategory))}
+                    onClick={() => {
+                      dispatch(setCheckSubCategory(subCategory));
+                      window.scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                      });
+                    }}
                   >
                     {subCategory}
                   </li>

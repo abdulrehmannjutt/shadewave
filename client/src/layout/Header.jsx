@@ -106,6 +106,10 @@ function Header() {
                   onClick={() => {
                     dispatch(setCheckCategory("Sunglasses"));
                     dispatch(setCheckSubCategory(""));
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth",
+                    });
                   }}
                 >
                   Sunglasses
@@ -133,6 +137,10 @@ function Header() {
                   onClick={() => {
                     dispatch(setCheckCategory("Eyeglasses"));
                     dispatch(setCheckSubCategory(""));
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth",
+                    });
                   }}
                 >
                   Eyeglasses
@@ -155,6 +163,10 @@ function Header() {
                 onClick={() => {
                   dispatch(setCheckCategory("Prescription"));
                   dispatch(setCheckSubCategory(""));
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
                 }}
               >
                 Prescription
@@ -290,6 +302,10 @@ function Header() {
                   onClick={() => {
                     dispatch(setCheckCategory("Sunglasses"));
                     dispatch(setCheckSubCategory(""));
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth",
+                    });
                   }}
                 >
                   Sunglasses
@@ -324,6 +340,10 @@ function Header() {
                       onClick={() => {
                         dispatch(setCheckSubCategory(item));
                         dispatch(setCheckCategory("Sunglasses"));
+                        window.scrollTo({
+                          top: 0,
+                          behavior: "smooth",
+                        });
                       }}
                     >
                       {item}
@@ -344,6 +364,10 @@ function Header() {
                   onClick={() => {
                     dispatch(setCheckCategory("Eyeglasses"));
                     dispatch(setCheckSubCategory(""));
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth",
+                    });
                   }}
                 >
                   Eyeglasses
@@ -378,6 +402,10 @@ function Header() {
                       onClick={() => {
                         dispatch(setCheckSubCategory(item));
                         dispatch(setCheckCategory("Eyeglasses"));
+                        window.scrollTo({
+                          top: 0,
+                          behavior: "smooth",
+                        });
                       }}
                     >
                       {item}
@@ -395,6 +423,10 @@ function Header() {
               onClick={() => {
                 dispatch(setCheckCategory("Prescription"));
                 dispatch(setCheckSubCategory(""));
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
               }}
             >
               Prescription

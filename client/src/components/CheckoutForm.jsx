@@ -128,7 +128,7 @@ const BillingDetailsForm = () => {
       return;
     }
 
-    const phoneNumber = "923296282733";
+    const phoneNumber = "923456502924";
 
     const orderSummary = cartItems
       .map((item) => `${item.title} (x${item.quantity}) - Rs: ${item.price}`)
@@ -259,8 +259,7 @@ const BillingDetailsForm = () => {
                 </span>
               </label>
 
-              {/* Jazz Cash */}
-              <label className="flex items-center space-x-3 cursor-pointer">
+              {/* <label className="flex items-center space-x-3 cursor-pointer">
                 <input
                   type="radio"
                   name="paymentMethod"
@@ -288,7 +287,6 @@ const BillingDetailsForm = () => {
                 </div>
               )}
 
-              {/* Easy Paisa */}
               <label className="flex items-center space-x-3 cursor-pointer">
                 <input
                   type="radio"
@@ -315,7 +313,7 @@ const BillingDetailsForm = () => {
                     <span className="text-green-500">0329 6282733</span>
                   </p>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>
