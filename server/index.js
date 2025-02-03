@@ -3,8 +3,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const userRoutes = require("./routes/user");
 const productRoutes = require("./routes/productsRoutes");
-const categoryRoutes = require("./routes/categoryRoutes")
-const orderRoutes = require("./routes/orderRoutes")
+const categoryRoutes = require("./routes/categoryRoutes");
+const orderRoutes = require("./routes/orderRoutes");
+const emailRoutes = require("./routes/emailRoutes");
+
 const path = require("path");
 require("dotenv").config();
 const DB = process.env.URL;
@@ -18,7 +20,7 @@ console.log("Attempting to connect to MongoDB...");
 
 mongoose
   .connect(DB, {
-    tlsAllowInvalidCertificates: true, 
+    tlsAllowInvalidCertificates: true,
     serverSelectionTimeoutMS: 5000,
   })
   .then(() => {
@@ -57,3 +59,5 @@ app.use("/admin", productRoutes);
 app.use("/category", categoryRoutes);
 
 app.use("/order", orderRoutes);
+
+app.use("/contact", emailRoutes);
