@@ -28,7 +28,7 @@ function SingleProduct() {
 
   return (
     <section className="text-gray-600 body-font overflow-hidden bg-white min-h-screen">
-      <ToastContainer />
+      <ToastContainer position="top-left"/>
       <div className="md:pt-16 pt-9 mx-auto">
         <div className="flex justify-between sm:flex-nowrap flex-wrap md:px-16 px-7">
           <ImageCarousel images={images} baseUrl={BACKEND_BASE_URL} />
